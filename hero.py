@@ -58,8 +58,3 @@ class Hero:
         self.kills += num_kills
     def add_death(self, num_deaths):
         self.deaths += num_deaths
-# Testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-hero = Hero("Wonder Woman")
-weapon = Weapon("Lasso of Truth", 90)
-hero.add_weapon(weapon)
-print(hero.attack())

@@ -25,11 +25,9 @@ class Team:
         for hero in self.heroes:
             hero.current_health=hero.starting_health
     def attack(self, other_team):
-        ''' Battle each team against each other.'''
-
         living_heroes = list()
         living_opponents = list()
-
+        
         for hero in self.heroes:
             living_heroes.append(hero)
 
