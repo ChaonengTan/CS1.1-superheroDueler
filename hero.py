@@ -9,6 +9,8 @@ class Hero:
         self.current_health=starting_health
         self.abilities = list()
         self.armors = list()
+        self.deaths = 0
+        self.kills = 0
     def fight(self, opponent):
         if self.abilities is not list() and opponent.abilities is not list():
             while self.is_alive() and opponent.is_alive():
@@ -18,12 +20,17 @@ class Hero:
                 print("Draw!")
             elif (self.is_alive()):
                 print (self.name,"Wins!")
+                self.add_kill(1)
+                opponent.add_death(1)
+                return 1
             else: 
                 print (opponent.name,"Wins!")
+                opponent.add_kill(1)
+                self.add_death(1)
+                return 2
         else:
             print("Draw!")
-        # heros=[self.name, opponent.name]
-        # print(random.choice(heros),"wins!")
+            return 3
     def add_ability(self, ability):
         self.abilities.append(ability)
     def attack(self):
@@ -45,16 +52,14 @@ class Hero:
             return True
         else:
             return False
-
+    def add_weapon(self, weapon):
+        self.abilities.append(weapon)
+    def add_kill(self, num_kills):
+        self.kills += num_kills
+    def add_death(self, num_deaths):
+        self.deaths += num_deaths
 # Testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-hero1 = Hero("Wonder Woman")
-hero2 = Hero("Dumbledore")
-ability1 = Ability("Super Speed", 300)
-ability2 = Ability("Super Eyes", 130)
-ability3 = Ability("Wizard Wand", 80)
-ability4 = Ability("Wizard Beard", 20)
-hero1.add_ability(ability1)
-hero1.add_ability(ability2)
-hero2.add_ability(ability3)
-hero2.add_ability(ability4)
-hero1.fight(hero2)
+hero = Hero("Wonder Woman")
+weapon = Weapon("Lasso of Truth", 90)
+hero.add_weapon(weapon)
+print(hero.attack())
