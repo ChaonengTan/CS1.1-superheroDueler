@@ -1,6 +1,7 @@
 import random
 from ability import *
 from armor import *
+from weapon import *
 class Hero:
     def __init__(self, name, starting_health=100):
         self.name=name
