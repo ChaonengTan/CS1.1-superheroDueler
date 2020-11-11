@@ -5,7 +5,7 @@ class Dog:
         print("dog initialized!")
     def bark(self):
         print("Woof!")
-
-# Testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-myDog=Dog("Rex", "superDog")
-myDog.bark()
+    def sit(self):
+        print(self.name,"sits")
+    def roll(self):
+        print(self.name,"rolls over")
