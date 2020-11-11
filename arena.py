@@ -58,7 +58,6 @@ class Arena:
         self.team_two.stats()
         print("\n")
 
-        # This is how to calculate the average K/D for Team One
         team_kills = 0
         team_deaths = 0
         for hero in self.team_one.heroes:
@@ -68,7 +67,6 @@ class Arena:
             team_deaths = 1
         print(self.team_one.name + " average K/D was: " + str(team_kills/team_deaths))
 
-        # TODO: Now display the average K/D for Team Two
         team2_kills = 0
         team2_deaths = 0
         for hero in self.team_two.heroes:
@@ -78,12 +76,37 @@ class Arena:
             team2_deaths = 1
         print(self.team_two.name + " average K/D was: " + str(team2_kills/team2_deaths))
 
-        # Here is a way to list the heroes from Team One that survived
         for hero in self.team_one.heroes:
             if hero.deaths == 0:
                 print("survived from " + self.team_one.name + ": " + hero.name)
-
-        #TODO: Now list the heroes from Team Two that survived
         for hero in self.team_two.heroes:
             if hero.deaths == 0:
                 print("survived from " + self.team_two.name + ": " + hero.name)
+
+
+
+# RUNNING CODE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if __name__ == "__main__":
+    game_is_running = True
+
+    # Instantiate Game Arena
+    arena = Arena()
+
+    #Build Teams
+    arena.build_team_one()
+    arena.build_team_two()
+
+    while game_is_running:
+
+        arena.team_battle()
+        arena.show_stats()
+        play_again = input("Play Again? Y or N: ")
+
+        #Check for Player Input
+        if play_again.lower() == "n":
+            game_is_running = False
+
+        else:
+            #Revive heroes to play again
+            arena.team_one.revive_heroes()
+            arena.team_two.revive_heroes()
