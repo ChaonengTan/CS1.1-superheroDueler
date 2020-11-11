@@ -9,8 +9,20 @@ class Hero:
         self.abilities = list()
         self.armors = list()
     def fight(self, opponent):
-        heros=[self.name, opponent.name]
-        print(random.choice(heros),"wins!")
+        if self.abilities is not list() and opponent.abilities is not list():
+            while self.is_alive() and opponent.is_alive():
+                self.take_damage(opponent.attack())
+                opponent.take_damage(self.attack())
+            if not self.is_alive() and not opponent.is_alive():
+                print("Draw!")
+            elif (self.is_alive()):
+                print (self.name,"Wins!")
+            else: 
+                print (opponent.name,"Wins!")
+        else:
+            print("Draw!")
+        # heros=[self.name, opponent.name]
+        # print(random.choice(heros),"wins!")
     def add_ability(self, ability):
         self.abilities.append(ability)
     def attack(self):
@@ -34,8 +46,14 @@ class Hero:
             return False
 
 # Testing ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-hero = Hero("Grace Hopper", 200)
-hero.take_damage(150)
-print(hero.is_alive())
-hero.take_damage(15000)
-print(hero.is_alive())
+hero1 = Hero("Wonder Woman")
+hero2 = Hero("Dumbledore")
+ability1 = Ability("Super Speed", 300)
+ability2 = Ability("Super Eyes", 130)
+ability3 = Ability("Wizard Wand", 80)
+ability4 = Ability("Wizard Beard", 20)
+hero1.add_ability(ability1)
+hero1.add_ability(ability2)
+hero2.add_ability(ability3)
+hero2.add_ability(ability4)
+hero1.fight(hero2)
